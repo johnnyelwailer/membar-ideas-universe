@@ -105,7 +105,7 @@ function toggleSource() {
 
 document.querySelectorAll('[data-node]').forEach((item) => item.addEventListener('click', () => {
   if (item.dataset.node === 'correction') showFocus();
-  if (item.dataset.node === 'source') window.location.href = 'source-video-workbench.html';
+  if (item.dataset.node === 'source' || item.dataset.node === 'source-strip') window.location.href = 'source-video-workbench.html';
   if (item.dataset.node === 'home') document.getElementById('home').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }));
 document.getElementById('focusNewButton').addEventListener('click', showFocus);

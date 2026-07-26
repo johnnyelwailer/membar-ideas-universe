@@ -91,8 +91,10 @@ function renderFocus(nodeId) {
   if (node.id === 'correction') {
     universe.classList.add('is-hidden');
     focusView.classList.add('is-visible');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    focusDrawer.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
-  window.scrollTo({ top: document.getElementById('universe').offsetTop, behavior: 'smooth' });
 }
 
 function closeFocus() {

@@ -17,6 +17,7 @@ const recentNodes = [
   { id: 'home', title: 'One calm invitation', hypothesis: 'A single source-backed invitation can balance progress, discovery, and memory.', state: 'continuity test', date: '22 Jul 2026', version: 'v02', last_touched: '22 Jul 2026', change_type: 'updated', category: 'memory', edges: ['Source Workbench', 'Memory Archive', 'Live Session'], link: 'source-video-workbench.html' },
   { id: 'source', title: 'Source + lyric chord layout', hypothesis: 'A source frame, lyric, chord, and section should stay legible on one persistent surface.', state: 'cue bridge', date: '23 Jul 2026', version: 'v03', last_touched: '23 Jul 2026', change_type: 'updated', category: 'live', edges: ['Source Workbench', 'Live Session', 'Structure Lens'], link: 'source-video-workbench.html' },
   { id: 'source-strip', title: 'Direct source scrub', hypothesis: 'A synchronized source strip can shorten the path from seeing a moment to revisiting it exactly.', state: 'exact retrieval', date: '24 Jul 2026', version: 'v04', last_touched: '24 Jul 2026', change_type: 'new', category: 'live', edges: ['Source Workbench', 'Memory Archive', 'Live Session'], link: 'source-video-workbench.html' },
+  { id: 'source-layout', title: 'Evidence deck', hypothesis: 'A split source frame and reading lane can make whole-take section comparison faster.', state: 'section compare', date: '29 Jul 2026', version: 'v01', last_touched: '29 Jul 2026', change_type: 'new', category: 'live', edges: ['Source Workbench', 'Direct source scrub', 'Structure Lens'], link: 'source-layout.html' },
   { id: 'workbench', title: 'Song Workbench', hypothesis: 'Every performed word should remain editable without losing source evidence.', state: 'canonical flow', date: '10 Jul 2026', version: 'v03', last_touched: '10 Jul 2026', change_type: 'stable', category: 'live', edges: ['Live Session', 'Memory Archive', 'Timestamp-linked correction'], link: '#correction' },
   { id: 'archive', title: 'Memory Archive', hypothesis: 'Automatic indexing should resurface strong fragments without asking the artist to maintain a library.', state: 'source-backed', date: '14 Jul 2026', version: 'v02', last_touched: '14 Jul 2026', change_type: 'stable', category: 'memory', edges: ['Home', 'Galaxy at hundreds of ideas', 'Source Workbench'], link: '#universe' },
   { id: 'phonetics', title: 'Phonetic Memory', hypothesis: 'Remembered pronunciation evidence can improve future correction without rewriting past takes.', state: 'evidence layer', date: '15 Jul 2026', version: 'v01', last_touched: '15 Jul 2026', change_type: 'needs-review', category: 'live', edges: ['Timestamp-linked correction', 'Memory Archive'], link: '#correction' },
@@ -59,10 +60,10 @@ function renderHomeAffordance() {
   if (!moment || !moment.sectionId) {
     homeStatus.textContent = 'Nothing kept yet · choose a source-backed moment to make this home useful.';
     homeNodeState.textContent = 'continuity test';
-    homeAction.innerHTML = '<a class="home-start" href="source-video-workbench.html">Start with Source Workbench <span>→</span></a>';
+    homeAction.innerHTML = '<a class="home-start" href="source-layout.html">Try Evidence Deck <span>→</span></a>';
     return;
   }
-  const href = 'source-video-workbench.html?moment=' + encodeURIComponent(moment.sectionId);
+  const href = 'source-layout.html?at=' + encodeURIComponent(moment.seconds || 47.3);
   homeStatus.textContent = 'Ready to resume · the last source-backed place is waiting.';
   homeNodeState.textContent = 'ready to resume';
   homeAction.innerHTML = '<div class="home-resume"><div><span class="home-resume-label">Resume last kept moment</span><strong>' + moment.label + ' · ' + moment.time + ' · ' + moment.chord + '</strong><em>“' + moment.lyric + '”</em><small>' + moment.song + ' · ' + moment.artist + ' · source-backed</small></div><a class="home-resume-button" href="' + href + '">Resume in Workbench <span>→</span></a><a class="return-chip" href="' + href + '">return chip ↗</a></div>';
@@ -133,7 +134,7 @@ function updateUniverse() {
   document.querySelectorAll('.list-item[data-node]').forEach((item) => { item.hidden = !ids.has(item.dataset.node); });
   document.querySelectorAll('.map-node[data-node]').forEach((item) => { item.hidden = !ids.has(item.dataset.node); });
   renderDynamicResults(matches);
-  document.getElementById('visibleCount').textContent = `${matches.length} indexed · ${Math.min(matches.length, 12)} mapped`;
+  document.getElementById('visibleCount').textContent = `${matches.length} indexed · ${Math.min(matches.length, 13)} mapped`;
   document.querySelectorAll('.filter').forEach((filter) => { const count = universeData.filter((node) => filter.dataset.filter === 'all' || node.change_type === filter.dataset.filter || node.category.includes(filter.dataset.filter)).length; const countLabel = filter.querySelector('span'); if (countLabel) countLabel.textContent = count; });
   renderScaleState(activeQuery ? `Search · ${matches.length} matches` : activeFilter === 'all' ? 'Recent thread' : `${activeFilter.replace('-', ' ')} only`);
 }
@@ -145,8 +146,8 @@ function saveFocus() {
 }
 
 document.querySelectorAll('[data-node]').forEach((item) => item.addEventListener('click', () => renderFocus(item.dataset.node)));
-document.getElementById('focusNewButton').addEventListener('click', () => renderFocus('correction'));
-document.getElementById('recentButton').addEventListener('click', () => renderFocus('source-strip'));
+document.getElementById('focusNewButton').addEventListener('click', () => renderFocus('source-layout'));
+document.getElementById('recentButton').addEventListener('click', () => renderFocus('source-layout'));
 document.getElementById('closeDrawer').addEventListener('click', closeFocus);
 document.getElementById('rememberFocus').addEventListener('click', saveFocus);
 document.getElementById('searchInput').addEventListener('input', (event) => { activeQuery = event.target.value.trim().toLowerCase(); updateUniverse(); });

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b0e0f" />
+    <title>Membar — Evidence Deck</title>
+    <link rel="stylesheet" href="source-layout.css" />
+  </head>
+  <body data-scene="window">
+    <main class="lab-shell">
+      <header class="lab-top"><a href="index.html#universe">← Ideas Universe</a><span class="lab-kicker">Membar · interaction lab / v01</span><span class="synthetic">synthetic source · no private media</span></header>
+      <section class="intro"><div><p class="lab-kicker">Evidence deck / source context pinned</p><h1>Stay with the take.</h1><p class="lede">Switch sections or scrub the source. The reading lane follows the same performed moment.</p></div><div class="song-meta"><strong>North Window</strong><span>Jo Sable · rehearsal take 02</span><span>north-window_take-02.mp4 · 01:12</span></div></section>
+      <section class="deck" id="deck" aria-label="Source video and lyric evidence deck">
+        <div class="source-column"><div class="source-frame" id="sourceFrame" data-scene="window"><div class="frame-grain"></div><span class="frame-kicker">SOURCE FRAME · <span id="frameSection">Pre-chorus</span></span><strong id="frameTitle">leave a light on</strong><span class="frame-time" id="frameTime">00:47.3</span><small id="frameSource">north-window_take-02.mp4 · source frame</small><i class="frame-orbit"></i></div><div class="source-footer"><span><i class="source-dot"></i> performed take</span><span>source stays authoritative</span></div></div>
+        <div class="reading-column"><div class="reading-head"><div><span class="lab-kicker">READING LANE</span><strong id="readoutSection">PRE-CHORUS</strong></div><div class="readout-time"><span id="readoutTime">00:47.3</span><small>source-linked</small></div></div><div class="reading-line"><span class="chord" id="readoutChord">C</span><div><p id="readoutLyric">If I leave, leave a light on</p><span id="readoutNote">lift · performed line</span></div></div><div class="reading-meta"><span><small>section</small><strong id="readoutSectionMeta">follows source</strong></span><span><small>bars</small><strong id="readoutBars">4 bars</strong></span><span><small>provenance</small><strong id="readoutProvenance">north-window_take-02.mp4 · 00:47.3</strong></span></div></div>
+      </section>
+      <section class="controls" aria-label="Evidence deck controls"><div class="timeline-row"><button id="playButton" type="button" aria-pressed="false">▶ Play source</button><input id="timeline" type="range" min="0" max="72" step="0.1" value="47.3" aria-label="Scrub source take" /><output id="timelineValue">00:47.3</output></div><div class="control-row"><button class="quiet-button" id="compareButton" type="button" aria-pressed="true">Reading layer on</button><span id="playState">source evidence stays authoritative</span><span id="keepStatus" aria-live="polite">Keep the exact section and timestamp as a return point.</span><button class="keep-button" id="keepButton" type="button">+ Keep this section</button></div></section>
+      <section class="section-rail" aria-labelledby="section-heading"><div class="rail-heading"><div><span class="lab-kicker">TAKE MAP</span><h2 id="section-heading">Four moments, one source.</h2></div><span>tap a section to reframe the deck</span></div><div class="section-buttons"><button type="button" data-section="cold-open" data-at="8"><span class="section-index">01</span><strong>Cold open</strong><small>Am · 4 bars</small></button><button type="button" data-section="verse" data-at="26"><span class="section-index">02</span><strong>Verse 1</strong><small>F · 8 bars</small></button><button class="is-active" type="button" data-section="pre" data-at="47.3"><span class="section-index">03</span><strong>Pre-chorus</strong><small>C · 4 bars</small></button><button type="button" data-section="chorus" data-at="60"><span class="section-index">04</span><strong>Chorus</strong><small>G · 8 bars</small></button></div></section>
+      <section class="return-card" id="returnCard" hidden><div><span class="lab-kicker">RETURN POINT</span><strong id="returnText">Pre-chorus · 00:47.3 · C</strong><span id="restoreStatus">Browser-local and source-linked.</span></div><button id="returnButton" type="button">Restore exact moment ↗</button></section>
+      <section class="lab-note"><div><span class="lab-kicker">HYPOTHESIS</span><strong>A split evidence deck makes whole-take comparison faster than leaving the source strip.</strong><em> Contrast: run 9 checked one uncertain word inside the strip.</em></div><div><span class="lab-kicker">CONSEQUENCE</span><strong>Keep one section. Reload or return to reunite its source frame, timestamp, lyric, chord, and provenance.</strong></div></section>
+    </main>
+    <script src="source-layout-state.js?v=10"></script><script src="source-layout.js?v=10"></script>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b0e0f" />
+    <title>Membar — Constellation Artboard</title>
+    <link rel="stylesheet" href="artboard-constellation.css?v=13" />
+  </head>
+  <body>
+    <main class="lab-shell">
+      <header class="lab-top"><a href="index.html#universe">← Ideas Universe</a><span class="lab-kicker">Membar · interaction lab / v01</span><span class="synthetic">synthetic source · no private media</span></header>
+      <section class="intro"><div><p class="lab-kicker">Constellation artboard / visual direction, reversible</p><h1>Put the moment in orbit.</h1><p class="lede">Drag the source moment into the orbit, try two readings, pin the one that serves the song. The take never changes.</p></div><div class="song-meta"><strong>North Window</strong><span>Jo Sable · rehearsal take 02</span><span>north-window_take-02.mp4 · 01:12</span></div></section>
+      <section class="board" aria-label="Constellation artboard">
+        <div class="tray">
+          <span class="lab-kicker">SOURCE TRAY</span>
+          <button class="moment-tile" id="momentTile" type="button" aria-describedby="trayHint">
+            <span class="tile-kicker">SOURCE MOMENT · CHORUS / G</span>
+            <strong>North Window</strong>
+            <span class="tile-time">00:60.0</span>
+            <em class="tile-lyric">“We are the weather in the room”</em>
+            <small class="tile-prov">Jo Sable · north-window_take-02.mp4 · synthetic fixture</small>
+            <span class="tile-grip" aria-hidden="true">⠿ drag into orbit</span>
+          </button>
+          <p class="tray-hint" id="trayHint">Drag into the orbit — or press to place.</p>
+          <div class="pinned-card" id="pinnedCard" hidden>
+            <span class="lab-kicker">PINNED CONSTELLATION</span>
+            <strong id="pinnedTitle">Chorus · 00:60.0 · G</strong>
+            <span id="pinnedTreatment">Ember drift</span>
+            <small>returned from browser-local pin · source unchanged</small>
+            <span class="pinned-actions"><button id="releaseButton" type="button">Release pin</button></span>
+          </div>
+        </div>
+        <div class="sky">
+          <span class="sky-kicker" id="skyKicker">EMPTY ORBIT</span>
+          <div class="orbit-zone" id="orbitZone">
+            <div class="orbit-rings" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="drop-hint" id="dropHint"><span>release to place</span></div>
+            <div class="placed-tile" id="placedTile" data-treatment="" hidden>
+              <span class="tile-kicker">PLACED · CHORUS / G</span>
+              <strong>North Window</strong>
+              <span class="tile-time">00:60.0</span>
+              <small class="tile-prov">Jo Sable · north-window_take-02.mp4</small>
+              <span class="pin-mark" id="pinMark" hidden>● pinned</span>
+            </div>
+            <span class="spark" aria-hidden="true"></span><span class="spark" aria-hidden="true"></span><span class="spark" aria-hidden="true"></span><span class="spark" aria-hidden="true"></span><span class="spark" aria-hidden="true"></span>
+          </div>
+          <div class="thread-row" aria-hidden="true"><svg id="threadSvg" viewBox="0 0 100 26" preserveAspectRatio="none"><path id="threadA" d="M2 22 C 30 4, 70 24, 98 8" /><path id="threadB" d="M2 10 C 34 24, 66 2, 98 18" /></svg><span class="thread-label" id="threadLabel">threads idle</span></div>
+        </div>
+      </section>
+      <section class="treatments" id="treatmentPanel" aria-label="Visual treatments" hidden>
+        <div class="treatments-head"><div><span class="lab-kicker">TWO READINGS</span><strong>Same source moment. Neither touches the take.</strong></div><span class="treatment-status" id="treatmentStatus" aria-live="polite">Choose a reading to preview it.</span></div>
+        <div class="treatment-cards">
+          <button class="treatment-card" type="button" data-treatment="ember" aria-pressed="false">
+            <span class="swatch swatch-ember" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+            <span class="treatment-copy"><strong>Ember drift</strong><small>warm particles · slow pull</small></span>
+            <span class="pick-mark">pinned</span>
+          </button>
+          <button class="treatment-card" type="button" data-treatment="tide" aria-pressed="false">
+            <span class="swatch swatch-tide" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="treatment-copy"><strong>Tide glass</strong><small>cool rings · breathing</small></span>
+            <span class="pick-mark">pinned</span>
+          </button>
+        </div>
+        <div class="pin-row"><span class="pin-note">↺ Non-destructive · the performed take stays authoritative.</span><button class="pin-button" id="pinButton" type="button" disabled>Pin this reading</button></div>
+      </section>
+      <section class="lab-note"><div><span class="lab-kicker">HYPOTHESIS</span><strong>Dragging a source moment into orbit and pinning one reading makes visual direction feel like a reversible song-making action, not a gallery.</strong><em> Contrast: run 10 compared sections in a split evidence deck.</em></div><div><span class="lab-kicker">CONSEQUENCE</span><strong>Pin one reading. Reload or return — the constellation restores exactly, and release keeps the source untouched.</strong></div></section>
+    </main>
+    <script src="artboard-constellation-state.js?v=11"></script><script src="artboard-constellation.js?v=11"></script>
+  </body>
+</html>

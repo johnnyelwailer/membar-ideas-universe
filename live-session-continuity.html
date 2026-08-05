@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#09100e" />
+    <title>Membar Live Session — continuity lab</title>
+    <link rel="stylesheet" href="live-session-continuity.css?v=13" />
+  </head>
+  <body>
+    <main class="lab">
+      <header class="top">
+        <div class="top-copy"><a class="back" href="index.html#universe">← Back to Ideas Universe</a><p class="eyebrow" style="margin-top:18px">MEMBAR · INTERACTION LAB / V01</p><h1>Stay in the song.</h1><p>Enter a quiet rehearsal from one exact source moment. Make two small attempts, compare them, and carry one back to Workbench.</p></div>
+        <div class="fixture"><strong>synthetic source-backed session</strong><br />North Window · Jo Sable<br />no private media · no co-writer</div>
+      </header>
+      <section class="studio" aria-label="Live Session continuity instrument">
+        <header class="studio-head"><div class="source-context"><i class="source-dot" aria-hidden="true"></i><div><strong>North Window · source moment</strong><small>Jo Sable · north-window_take-02.mp4 · performed evidence</small></div></div><div class="session-state" id="sessionState"><i></i><span id="sessionStateText">ready to rehearse</span></div></header>
+        <div class="source-lane">
+          <div class="source-frame"><div class="frame-label"><div><strong>Chorus</strong><span>source frame · <em>01:00.0</em></span></div><span class="frame-time">G</span></div></div>
+          <div class="source-read"><p class="eyebrow">performed line / stays intact</p><blockquote>“We are the weather in the room”</blockquote><div class="meta"><span><small>section</small><strong>Chorus</strong></span><span><small>source time</small><strong>01:00.0</strong></span></div><small>One source moment anchors every rehearsal pass.</small></div>
+        </div>
+        <section class="rehearsal"><div class="rehearsal-head"><div><p class="eyebrow">live session / synthetic take capture</p><h2 id="rehearsalTitle">Try the line again</h2></div><p id="rehearsalHint">The source stays visible while you rehearse.</p></div><div class="meter" id="meter" aria-hidden="true"><div class="meter-bars" id="meterBars"></div></div><div class="meter-caption"><span id="meterLabel">standby · source anchor held</span><span>8 sec synthetic pass</span></div><div class="actions"><button class="primary" id="enterButton" type="button">Enter Live Session</button><button class="capture" id="captureButton" type="button" disabled>● Capture Take A</button><button class="secondary" id="resetButton" type="button">Reset passes</button></div><p class="status-line" id="statusLine" role="status">Choose Enter to bring this source moment into a session.</p></section>
+        <section class="takes" aria-live="polite"><div class="takes-head"><p class="eyebrow">two attempts / compare by trying</p><small id="takeCount">0 of 2 captured</small></div><div class="take-grid"><button class="take-card" id="takeA" type="button" hidden><header><strong>Take A</strong><span class="selected-mark" hidden>selected</span></header><div class="take-note">held the final word open</div><footer><span>captured in Live Session</span><span>00:08</span></footer></button><button class="take-card" id="takeB" type="button" hidden><header><strong>Take B</strong><span class="selected-mark" hidden>selected</span></header><div class="take-note">leaned into the room tone</div><footer><span>captured in Live Session</span><span>00:08</span></footer></button></div></section>
+        <div class="return-bar"><p id="returnText"><strong>No take chosen yet.</strong> Capture two passes, then choose one to make a return point.</p><button id="workbenchButton" type="button" hidden>Return chosen take to Workbench ↗</button></div>
+      </section>
+      <section class="proof"><div><p class="eyebrow">hypothesis</p><strong>Source-backed rehearsal can make Live Session → Workbench feel continuous, not like a route change.</strong></div><div><p class="eyebrow">consequence</p><strong>Capture → compare → choose.</strong><em> The chosen pass remains a browser-local return point with its source moment.</em></div></section>
+      <p class="note">The take notes are synthetic session observations, not rewritten lyrics. Persistence is versioned browser-local state under <code>membar:live-session-continuity:v01</code>.</p>
+    </main>
+    <script src="live-session-continuity-state.js?v=13"></script>
+    <script src="live-session-continuity.js?v=13"></script>
+  </body>
+</html>

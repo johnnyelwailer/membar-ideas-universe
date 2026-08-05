@@ -213,6 +213,7 @@ function updateUniverse() {
   document.querySelectorAll('.map-node[data-node]').forEach((item) => { item.hidden = !ids.has(item.dataset.node); });
   renderDynamicResults(matches);
   document.getElementById('visibleCount').textContent = `${matches.length} indexed · ${mappedCount} mapped`;
+  document.getElementById('universeCount').textContent = universeData.length;
   document.getElementById('scaleLabel').textContent = `${mappedCount} on the map`;
   document.getElementById('archiveCount').textContent = `${Math.max(0, matches.length - mappedCount)} quieter archive nodes`;
   document.querySelectorAll('.filter').forEach((filter) => { const count = universeData.filter((node) => filter.dataset.filter === 'all' || node.change_type === filter.dataset.filter || node.category.includes(filter.dataset.filter)).length; const countLabel = filter.querySelector('span'); if (countLabel) countLabel.textContent = count; });

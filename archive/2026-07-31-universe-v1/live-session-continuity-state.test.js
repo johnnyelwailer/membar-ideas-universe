@@ -1,0 +1,33 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+
+const source = fs.readFileSync(path.join(__dirname, 'live-session-continuity-state.js'), 'utf8');
+const values = new Map();
+const storage = { getItem: (key) => values.get(key) ?? null, setItem: (key, value) => values.set(key, value), removeItem: (key) => values.delete(key) };
+const context = { globalThis: {}, window: {} };
+context.globalThis = context.window;
+vm.runInNewContext(source, context);
+const state = context.window.MembarLiveSessionState;
+const snap = (value) => JSON.stringify(value);
+
+assert.equal(state.STORAGE_KEY, 'membar:live-session-continuity:v01');
+let current = state.initialState();
+assert.equal(current.status, 'ready');
+current = state.capture(current, { id: 'take-a', label: 'Take A', note: 'held the final word open', duration: '00:08' });
+current = state.capture(current, { id: 'take-b', label: 'Take B', note: 'leaned into the room tone', duration: '00:08' });
+assert.equal(current.takes.length, 2);
+assert.equal(current.takes[0].sourceMoment.source, 'north-window_take-02.mp4');
+assert.equal(state.capture(current, { id: 'take-c' }).takes.length, 2);
+current = state.selectTake(current, 'take-b');
+assert.equal(current.status, 'selected');
+assert.equal(current.returnPoint.takeId, 'take-b');
+state.write(storage, current);
+assert.equal(state.read(storage).selectedTakeId, 'take-b');
+assert.equal(state.read(storage).returnPoint.sourceMoment.time, '01:00.0');
+assert.equal(state.selectTake(current, 'missing').selectedTakeId, 'take-b');
+assert.equal(state.restore({ version: 2, takes: [] }).status, 'ready');
+state.clear(storage);
+assert.equal(state.read(storage).status, 'ready');
+console.log('live-session continuity state tests passed');

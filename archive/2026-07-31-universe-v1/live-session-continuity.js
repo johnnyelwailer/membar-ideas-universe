@@ -1,14 +1,26 @@
 (function bootLiveSessionContinuity(global) {
   const S = global.MembarLiveSessionState;
+  const H = global.MembarTimelineHandoff;
   const $ = (id) => document.getElementById(id);
   const storage = (() => { try { return global.localStorage; } catch (_) { return null; } })();
-  let state = S.read(storage);
+  const handoff = H.decode(new URLSearchParams(global.location.search).get('moment'));
+  const sourceMoment = handoff || S.SOURCE_MOMENT;
+  let state = S.read(storage, sourceMoment);
   let entered = state.takes.length > 0;
   let capturing = false;
   let timer = null;
   let captureStartedAt = 0;
   const takeCards = { 'take-a': $('takeA'), 'take-b': $('takeB') };
   $('meterBars').innerHTML = Array.from({ length: 34 }, (_, index) => `<i style="--h:${28 + (index * 17) % 58}%"></i>`).join('');
+  function renderSource() {
+    $('frameSection').textContent = sourceMoment.section; $('frameTime').textContent = sourceMoment.time; $('frameChord').textContent = sourceMoment.chord;
+    $('performedLine').textContent = `“${sourceMoment.lyric}”`; $('readSection').textContent = sourceMoment.section; $('readTime').textContent = sourceMoment.time; $('readBars').textContent = `${sourceMoment.bars} · ${sourceMoment.chord}`;
+    $('sourceProvenance').textContent = `${sourceMoment.song} · ${sourceMoment.artist} · ${sourceMoment.source} · ${sourceMoment.provenance}`;
+    $('fixtureSong').textContent = sourceMoment.song; $('fixtureArtist').textContent = sourceMoment.artist;
+    document.querySelector('.source-context strong').textContent = `${sourceMoment.song} · source moment`; document.querySelector('.source-context small').textContent = `${sourceMoment.artist} · ${sourceMoment.source} · ${sourceMoment.provenance}`;
+    document.title = `Membar ${sourceMoment.song} · ${sourceMoment.section} ${sourceMoment.time}`;
+    $('timelineBack').href = H.returnHref(sourceMoment);
+  }
 
   function setStatus(text) { $('statusLine').textContent = text; }
   function render() {
@@ -31,7 +43,7 @@
     });
     if (selected) {
       const take = state.takes.find((item) => item.id === selected);
-      $('returnText').innerHTML = `<strong>${take.label} chosen.</strong> ${take.note} · source moment 01:00.0 is still the anchor.`;
+      $('returnText').innerHTML = `<strong>${take.label} chosen.</strong> ${take.note} · source moment ${sourceMoment.time} is still the anchor.`;
       $('workbenchButton').hidden = false;
       $('workbenchButton').textContent = `Return ${take.label} to Workbench ↗`;
     } else {
@@ -55,7 +67,8 @@
   $('captureButton').addEventListener('click', () => capturing ? finishCapture() : startCapture());
   $('takeA').addEventListener('click', () => selectTake('take-a'));
   $('takeB').addEventListener('click', () => selectTake('take-b'));
-  $('resetButton').addEventListener('click', () => { clearInterval(timer); timer = null; capturing = false; entered = false; persist(S.initialState()); $('rehearsalTitle').textContent = 'Try the line again'; $('rehearsalHint').textContent = 'The source stays visible while you rehearse.'; setStatus('Passes reset · choose Enter to bring this source moment into a session.'); });
-  $('workbenchButton').addEventListener('click', () => { setStatus('Return point reopened · Workbench would restore North Window · Chorus · 01:00.0 here.'); $('workbenchButton').textContent = 'Workbench return point reopened ✓'; });
+  $('resetButton').addEventListener('click', () => { clearInterval(timer); timer = null; capturing = false; entered = false; persist(S.initialState(sourceMoment)); $('rehearsalTitle').textContent = 'Try the line again'; $('rehearsalHint').textContent = 'The source stays visible while you rehearse.'; setStatus('Passes reset · choose Enter to bring this source moment into a session.'); });
+  $('workbenchButton').addEventListener('click', () => { setStatus(`Return point reopened · Workbench restores ${sourceMoment.song} · ${sourceMoment.section} · ${sourceMoment.time}.`); $('workbenchButton').textContent = 'Workbench return point reopened ✓'; });
+  renderSource();
   render();
 })(typeof window === 'undefined' ? globalThis : window);

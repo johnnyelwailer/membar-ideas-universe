@@ -1,5 +1,24 @@
 # Membar chronological timeline lab
 
+## Run 16 — exact-context archive reopening
+
+Hypothesis: If a held timeline moment can reopen the archived Workbench with
+the exact synthetic source identity, section, timestamp, lyric, chord, and
+provenance visibly synchronized—and can return to the timeline without losing
+the held moment—then chronological transport becomes a trustworthy route into
+making, not just a visual archive.
+
+Contrast: Run 15 tested scrub/play/pause evolution, persistent hold, reload,
+and archived-route reopening, but did not prove that source context survived
+the handoff. This run adds a versioned moment handoff and a return-to-timeline
+contract without adding another capture surface or shell.
+
+Node status: Timeline evolution is `updated`, v02, last_touched 12 Aug 2026,
+change_type `updated`. The experiment preserves 103 nodes and the archived
+universe. Relationship edges: Timeline evolution -> Live rehearsal continuity;
+Timeline evolution -> Source Workbench; Timeline evolution -> Memory Archive;
+Timeline evolution -> Home.
+
 ## Run 14 · 10 Aug 2026
 
 ### Falsifiable hypothesis

@@ -1,0 +1,8 @@
+const assert = require('node:assert/strict');
+const test = require('node:test');
+const state = require('./correction-reading-state.js');
+const context = { id: 'timeline', song: 'North Window', artist: 'Jo Sable', source: 'north-window_take-02.mp4', section: 'Bridge', time: '01:14.2', seconds: 74.2, chord: 'Am', bars: '8 bars', lyric: 'The room keeps turning blue', provenance: 'performed source · synthetic fixture' };
+test('derives a correction candidate from the exact handed-off lyric', () => { assert.deepEqual(state.candidateFor(context).candidates.map((candidate) => candidate.word), ['room', 'roam', 'bloom']); assert.equal(state.displayLyric(context, state.normalize(null, context)), 'The room keeps turning blue'); });
+test('apply changes display only while performed text stays in payload', () => { const corrected = state.apply(state.normalize(null, context), 'bloom'); assert.equal(corrected.status, 'corrected'); assert.equal(state.displayLyric(context, corrected), 'The bloom keeps turning blue'); assert.equal(corrected.payload.lyric, context.lyric); assert.equal(state.restore(corrected).display, 'room'); });
+test('stale storage cannot replace a new handed-off source moment', () => { const storage = { getItem: () => JSON.stringify({ version: 1, momentId: 'other', display: 'bloom' }) }; const restored = state.read(storage, context); assert.equal(restored.momentId, 'timeline'); assert.equal(restored.display, 'room'); });
+console.log('correction reading state tests passed');

@@ -1,5 +1,29 @@
 # Membar chronological timeline lab
 
+## Run 17 — correction-derived Workbench reading
+
+Hypothesis: If a held timeline moment opens a correction-derived Workbench
+reading where an artist can choose and apply a display-only lyric candidate,
+then return to the same held moment with performed text, timestamp, source,
+and provenance intact, timeline continuity becomes a making loop rather than
+a route handoff.
+
+Contrast: Run 16 proved exact timeline → archived Live Session source-context
+handoff and return, but did not test a correction-derived reading. This run
+adds one active reading route and reuses the versioned handoff contract; the
+former spatial lab and archived Workbench remain immutable.
+
+Node status: Timeline evolution remains `updated`, v03, last_touched 14 Aug
+2026, change_type `updated`; 103 synthetic nodes are preserved. Relationship
+edges: Timeline evolution → correction-derived Workbench reading;
+Timeline evolution → Source Workbench; Timeline evolution → Memory Archive;
+Timeline evolution → Home.
+
+The reading shows the exact handed-off source identity, section, timestamp,
+lyric, chord, bars, and provenance. Candidate selection, apply-to-display,
+keep-performed, a versioned browser-local correction, and return-to-timeline
+are functional. The performed lyric stays visible as the authoritative line.
+
 ## Run 16 — exact-context archive reopening
 
 Hypothesis: If a held timeline moment can reopen the archived Workbench with

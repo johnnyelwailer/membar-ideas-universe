@@ -1,0 +1,9 @@
+@media (max-width: 720px) {
+  .intro h1,
+  .world h2 {
+    overflow-wrap: anywhere;
+  }
+
+  .intro h1 { font-size: 48px; }
+  .world h2 { font-size: 36px; }
+}

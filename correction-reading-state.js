@@ -1,8 +1,9 @@
 (function exposeCorrectionReadingState(global) {
   const STORAGE_KEY = 'membar:correction-reading:v01';
+  function safeWord(value) { const word = String(value || '').trim(); return /^[A-Za-z][A-Za-z'-]{0,23}$/.test(word) ? word : 'word'; }
   function candidateFor(context) {
     const lyric = String(context?.lyric || '');
-    const options = lyric.includes('weather') ? ['weather', 'whether', 'feather'] : lyric.includes('light') ? ['light', 'night', 'right'] : lyric.includes('room') ? ['room', 'roam', 'bloom'] : [lyric.split(/\s+/).filter(Boolean)[0] || 'word', 'heard', 'hold'];
+    const options = lyric.includes('weather') ? ['weather', 'whether', 'feather'] : lyric.includes('light') ? ['light', 'night', 'right'] : lyric.includes('room') ? ['room', 'roam', 'bloom'] : [safeWord(lyric.split(/\s+/).filter(Boolean)[0]), 'heard', 'hold'];
     return { id: `${context?.id || 'moment'}-${options[0]}`, word: options[0], candidates: options.map((word, index) => ({ word, confidence: [0.61, 0.24, 0.15][index] || 0.1, note: index === 0 ? 'performed wording' : index === 1 ? 'phonetic match · context' : 'phonetic match' })) };
   }
   function normalize(raw, context) {

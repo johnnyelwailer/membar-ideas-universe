@@ -1,0 +1,11 @@
+const assert = require('node:assert/strict');
+const state = require('./live-session-continuity-state-v18.js');
+const alternate = { ...state.SOURCE_MOMENT, section: 'Bridge', time: '01:14.2', chord: 'Am', lyric: 'The room keeps turning blue' };
+let current = state.capture(state.initialState(), { id: 'chorus-a', note: 'held the chorus open' });
+current = state.selectTake(current, 'chorus-a');
+assert.equal(state.restore(current, alternate).status, 'ready');
+assert.equal(state.restore(current, alternate).takes.length, 0);
+let bridge = state.capture(state.initialState(alternate), { id: 'bridge-a', note: 'held the blue turn' });
+bridge = state.selectTake(bridge, 'bridge-a');
+assert.equal(state.restore(bridge, alternate).selectedTakeId, 'bridge-a');
+console.log('live-session continuity v18 state tests passed');

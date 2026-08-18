@@ -1,6 +1,7 @@
 (function exposeTimelineHandoff(global) {
   const VERSION = 1;
   const REQUIRED = ['id', 'song', 'artist', 'source', 'section', 'time', 'chord', 'lyric'];
+  const SAFE_TEXT = /^[^<>]{1,160}$/u;
 
   function contextFor(moment) {
     const context = moment && moment.context ? moment.context : {};
@@ -21,7 +22,7 @@
   }
 
   function isValid(payload) {
-    return Boolean(payload && payload.v === VERSION && REQUIRED.every((key) => typeof payload[key] === 'string' && payload[key].length > 0));
+    return Boolean(payload && payload.v === VERSION && REQUIRED.every((key) => typeof payload[key] === 'string' && SAFE_TEXT.test(payload[key])) && SAFE_TEXT.test(String(payload.bars || '')) && SAFE_TEXT.test(String(payload.provenance || '')) && Number.isFinite(Number(payload.seconds)));
   }
 
   function encode(payload) {

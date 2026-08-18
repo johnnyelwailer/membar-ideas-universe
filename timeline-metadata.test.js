@@ -1,0 +1,11 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const root = __dirname;
+const runtime = fs.readFileSync(path.join(root, 'timeline-v17.js'), 'utf8');
+const readme = fs.readFileSync(path.join(root, 'README.md'), 'utf8');
+assert.match(runtime, /id: 'timeline',[\s\S]*?date: '14 Aug'[\s\S]*?version: 'v03'[\s\S]*?change: 'updated'/);
+assert.match(readme, /Timeline evolution remains `updated`, v03, last_touched 14 Aug\s+2026/);
+assert.match(runtime, /rehearsal-reading-v18\.html/);
+assert.match(runtime, /live-session-continuity-v18\.html/);
+console.log('timeline metadata tests passed');

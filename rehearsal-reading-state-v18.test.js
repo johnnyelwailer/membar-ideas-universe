@@ -1,0 +1,11 @@
+const assert = require('node:assert/strict');
+const state = require('./rehearsal-reading-state-v18.js');
+const payload = { id: 'live-rehearsal', song: 'North Window', artist: 'Jo Sable', source: 'north-window_take-02.mp4', section: 'Chorus', time: '01:00.0' };
+const passes = [{ id: 'pass-a' }, { id: 'pass-b' }];
+let current = state.initialState(payload);
+assert.equal(current.selectedPassId, 'pass-a');
+current = state.select(current, 'pass-b', passes);
+assert.equal(state.keep(current).keptPassId, 'pass-b');
+assert.equal(state.normalize({ ...state.keep(current), momentId: 'other' }, payload, passes).selectedPassId, 'pass-a');
+assert.equal(state.normalize(state.keep(current), { ...payload, time: '01:14.2' }, passes).keptPassId, null);
+console.log('rehearsal reading state tests passed');

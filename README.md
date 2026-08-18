@@ -1,5 +1,34 @@
 # Membar chronological timeline lab
 
+## Run 18 — selected rehearsal-pass Workbench reading
+
+Hypothesis: If selecting a synthetic rehearsal pass reopens a non-destructive
+Workbench reading with its source identity, timestamp, performed lyric, chord,
+section, and provenance synchronized—and returns to that selected pass—then
+pass selection becomes a making consequence rather than only a capture result.
+
+Contrast: Run 17 tested a display-only lyric candidate inside one held source
+moment. Run 18 tests a different consequence: comparing two performed passes
+changes the source/chord/section reading while leaving performed text
+authoritative.
+
+Node status: Timeline evolution remains `updated`, v03, last_touched 14 Aug
+2026, change_type `updated`; 103 synthetic nodes are preserved. Relationship
+edges: Timeline evolution → Live rehearsal continuity; Timeline evolution →
+Correction-derived Workbench; Timeline evolution → Source Workbench; Timeline
+evolution → Memory Archive; Timeline evolution → Home. The active root stays a
+chronological transport and the former spatial lab remains immutable.
+
+The v18 reading exposes Pass A and Pass B, a visible source/chord/section
+transition, a browser-local kept pass, and a return URL that reopens the same
+pass context. The versioned archive compatibility route consumes non-default
+handoff payloads, and the versioned continuity route rejects stored passes from
+another source moment; the legacy source study remains untouched.
+
+Docs-focused validation is run with:
+
+`node --test docs/ui-concept/membar-ideas-universe/*.test.js docs/ui-concept/membar-ideas-universe/archive/2026-07-31-universe-v1/*-state.test.js`
+
 ## Run 17 — correction-derived Workbench reading
 
 Hypothesis: If a held timeline moment opens a correction-derived Workbench
